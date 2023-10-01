@@ -1,6 +1,7 @@
 # Prevent SQL Injection in node.js
  
 ## Bad example
+
 ```javascript
 const query = `SELECT * FROM Repository WHERE TAG = '${userQuery}' AND public = 1`
 ```
@@ -17,10 +18,13 @@ SELECT * FROM Repository WHERE TAG = 'javascript';
 ```
  
 ## The mysql2 client with express.js
+
 ```Terminal
 npm install mysql2
 ```
-define a userQuery
+
+### bad example
+
 ```JavaScript
 import express from 'express';
 import mysql from 'mysql2/promise';
@@ -91,3 +95,4 @@ Is useful if you know every possible valid user input. From there, you can easil
 ```
  
 [source](https://planetscale.com/blog/how-to-prevent-sql-injection-attacks-in-node-js)
+
