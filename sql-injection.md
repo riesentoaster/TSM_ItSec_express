@@ -26,7 +26,7 @@ import express from 'express';
 import mysql from 'mysql2/promise';
  
 const connection = await mysql.createConnection(process.env.DATABASE_URL);
- const app = express();
+const app = express();
  
 app.get('/repositories/:userQuery', async (req, res) => {
     const {userQuery} = req.params;
