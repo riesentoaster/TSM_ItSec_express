@@ -30,7 +30,7 @@ const app = express();
  
 app.get('/repositories/:userQuery', async (req, res) => {
     const {userQuery} = req.params;
-    const query = 'SELECT * FROM Repository WHERE TAG = '${userQuery}' AND public = 1';
+    const query = `SELECT * FROM Repository WHERE TAG = '${userQuery}' AND public = 1`;
     const [rows] = await connection.query(query);
    res.json(rows);
 });
