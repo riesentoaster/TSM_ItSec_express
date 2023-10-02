@@ -49,7 +49,7 @@ app.listen(3001, () =>{
 ```JavaScript
 const connection = await mysql.createConnection({
   uri: process.env.DATABASE_URL,
-  multipleStatements: true
+  multipleStatements: false
 })
 ```
  
