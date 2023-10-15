@@ -12,12 +12,12 @@ const db = mysql.createConnection({
   password: 'itsec',
   database: 'users_db'
 })
-
+db.connect()
 // admin: admin
 // someuser: test
 
-db.connect()
 
+// ### With MongoBD ###
 // const User = require('./user.js'); // User Model
 
 const app = express();
@@ -27,7 +27,7 @@ app.use(session({
   secret: 'r8q,+&1LM3)CD*zAGpx1xm{NeQhc;#',
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 30 * 1000 } // 1 hour
+  cookie: { maxAge: 10 * 1000 } // 1 hour
 }));
 
 // Configure Middleware
@@ -41,6 +41,7 @@ var strategy = new LocalStrategy(function verify(username, password, cb) {
     if (err) { return cb(err); }
     if (!user) { return cb(null, false, { message: 'Incorrect username or password.' }); }
 
+    // Apply crypto stuff with other packages
     // crypto.pbkdf2(password, user.salt, 310000, 32, 'sha256', function(err, hashedPassword) {
     //   if (err) { return cb(err); }
     //   if (!crypto.timingSafeEqual(user.hashed_password, hashedPassword)) {
@@ -53,16 +54,7 @@ var strategy = new LocalStrategy(function verify(username, password, cb) {
     if(password === 'admin') { return cb(null, user); }
   });
 });
-
 passport.use(strategy);
-
-// passport.serializeUser(function(user, done) {
-//     done(null, user);
-//   });
-  
-//   passport.deserializeUser(function(user, done) {
-//     done(null, user);
-//   });
 
 passport.serializeUser(function(user, cb) {
     process.nextTick(function() {
@@ -81,6 +73,7 @@ passport.serializeUser(function(user, cb) {
   });
 
 
+// ### With MongoBD ###
 // // Passport Local Strategy
 // passport.use(User.createStrategy());
 
