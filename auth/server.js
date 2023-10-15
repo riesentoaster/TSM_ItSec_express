@@ -52,6 +52,7 @@ var strategy = new LocalStrategy(function verify(username, password, cb) {
     // });
 
     if(password === 'admin') { return cb(null, user); }
+    return cb(null, false, { message: 'Incorrect username or password.' });
   });
 });
 passport.use(strategy);
