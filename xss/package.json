@@ -1,0 +1,9 @@
+{
+  "name": "express-example",
+  "dependencies": {
+    "body-parser": "*",
+    "dompurify": "*",
+    "express": "*",
+    "jsdom": "*"
+  }
+}
